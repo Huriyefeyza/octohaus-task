@@ -1,34 +1,54 @@
 <template>
   <div id="app">
     <div class="feed">
-      <text-box></text-box>
-      <content-box></content-box>
+      <text-box :postList="postList"></text-box>
+      <div v-if="postList.length > 0">
+        <content-box
+          v-for="(post,index) in postList"
+          :date="post.date"
+          :time="post.time"
+          :text="post.text"
+          :key="index"
+        ></content-box>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import TextBox from "./components/TextBox.vue"
-import ContentBox from "./components/ContentBox.vue"
+import TextBox from "./components/TextBox.vue";
+import ContentBox from "./components/ContentBox.vue";
 export default {
-  name: 'App',
+  name: "App",
   components: {
     TextBox,
-    ContentBox
-  }
-}
+    ContentBox,
+  },
+  data() {
+    return {
+      postList: [],
+    };
+  },
+  created() {
+    this.postList = window.localStorage.getItem("postList")
+      ? JSON.parse(window.localStorage.getItem("postList"))
+      : this.postList;
+      console.log(this.postList);
+      console.log(this.postList.length)
+  },
+};
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
 body {
   width: 100%;
   min-height: 100%;
-  background-color: #34495E;
+  background-color: #34495e;
   overflow-x: hidden;
 }
-*{
-  font-family: 'Roboto', sans-serif;
+* {
+  font-family: "Roboto", sans-serif;
   margin: 0;
   padding: 0;
   font-weight: 400;

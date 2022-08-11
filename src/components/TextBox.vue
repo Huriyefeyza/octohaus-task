@@ -1,22 +1,46 @@
 <template>
   <div class="text-box">
-    <textarea placeholder="Your text here"></textarea>
+    <textarea placeholder="Your text here" v-model="text"></textarea>
     <div class="bottom">
       <div class="left-content">
         <i data-feather="paperclip"></i>
         <i data-feather="smile"></i>
       </div>
       <div class="right-content">
-        <button class="submit">SUBMIT</button>
+        <button class="submit" @click="saveText">SUBMIT</button>
       </div>
     </div>
   </div>
 </template>
 <script>
 import feather from 'feather-icons'
+import { format } from 'date-fns'
+
 export default {
   mounted(){
     feather.replace();
+  },
+  props : ["postList"],
+  data() {
+    return {
+      text: ''
+    }
+  },
+  methods: {
+    saveText(){
+      const date = format(new Date(),"d.MM.yyyy");
+      const time = format(new Date(),"h:m");
+      
+      const post = [{
+        date : date,
+        time : time,
+        text : this.text
+      }]
+      
+      const postList = this.postList
+
+      window.localStorage.setItem('postList',JSON.stringify(postList.push(post)));
+    }
   }
 }
 </script>

@@ -5,10 +5,9 @@
         <img src="../assets/profile.png" />
       </div>
       <div class="content">
-        <div class="date">30.08.2022 - 12:39</div>
+        <div class="date">{{date}} - {{time}}</div>
         <div class="text">
-          <span class="name">Jane Doe </span>Lorem ipsum dolor sit amet,
-          consectetur adipiscing elit, sed do eiusmod tempor
+          <span class="name">Jane Doe </span>{{text}}
         </div>
       </div>
     </div>
@@ -37,6 +36,7 @@
 <script>
 import feather from "feather-icons";
 export default {
+  props: ["date","time", "text"],
   mounted() {
     feather.replace();
   },
