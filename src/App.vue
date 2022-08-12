@@ -8,6 +8,7 @@
           :date="post.date"
           :time="post.time"
           :text="post.text"
+          :postList="postList"
           :key="index"
         ></content-box>
       </div>
@@ -33,8 +34,6 @@ export default {
     this.postList = window.localStorage.getItem("postList")
       ? JSON.parse(window.localStorage.getItem("postList"))
       : this.postList;
-      console.log(this.postList);
-      console.log(this.postList.length)
   },
 };
 </script>
@@ -63,5 +62,11 @@ body {
 .feed {
   width: 420px;
   margin: auto;
+}
+@media (max-width:450px) {
+  .feed {
+    width: 100%;
+    margin: 0 15px;
+  }
 }
 </style>

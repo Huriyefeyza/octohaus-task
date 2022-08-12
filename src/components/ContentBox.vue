@@ -13,20 +13,20 @@
     </div>
     <div class="bottom">
       <div class="left-content">
-        <div class="like">
+        <div class="like" @click="likePost" :class="{active : like.active}">
           <i data-feather="thumbs-up"></i>
-          <span>0</span>
+          <span>{{like.count}}</span>
         </div>
-        <div class="dislike">
+        <div class="dislike" @click="dislikePost" :class="{active : dislike.active}">
           <i data-feather="thumbs-down"></i>
-          <span>9</span>
+          <span>{{dislike.count}}</span>
         </div>
       </div>
       <div class="right-content">
         <div class="edit">
           <i data-feather="edit-3"></i>
         </div>
-        <div class="trash">
+        <div class="trash" @click="trashElement">
           <i data-feather="trash-2"></i>
         </div>
       </div>
@@ -36,10 +36,41 @@
 <script>
 import feather from "feather-icons";
 export default {
-  props: ["date","time", "text"],
+  props: ["date","time", "text", "postList"],
   mounted() {
     feather.replace();
   },
+  data(){
+    return {
+      like: {
+        count: 0,
+        active: false,
+      },
+      dislike: {
+        count: 9,
+        active: false,
+      }
+    }
+  },
+  methods: {
+    trashElement() {
+      let index = this.$vnode.key;
+
+      const postList = this.postList
+      postList.splice(index,1)
+
+      window.localStorage.setItem('postList', JSON.stringify(postList))
+
+    },
+    likePost() {
+      this.like.active = !this.like.active
+      this.like.active ? this.like.count++ : this.like.count--
+    },
+    dislikePost() {
+      this.dislike.active = !this.dislike.active
+      this.dislike.active ? this.dislike.count++ : this.dislike.count--
+    }
+  }
 };
 </script>
 <style>
@@ -103,9 +134,14 @@ export default {
   align-items: center;
   gap: 5px;
   margin-right: 20px;
+  cursor: pointer;
 }
 .left-content span{
   color: #C1C8CE;
   font-size: 14px;
+}
+.active svg,
+.active span{
+  color: #34495E !important
 }
 </style>

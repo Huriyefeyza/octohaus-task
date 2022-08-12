@@ -31,15 +31,18 @@ export default {
       const date = format(new Date(),"d.MM.yyyy");
       const time = format(new Date(),"h:m");
       
-      const post = [{
+      const post = {
         date : date,
         time : time,
         text : this.text
-      }]
+      }
       
       const postList = this.postList
+      postList.push(post)
 
-      window.localStorage.setItem('postList',JSON.stringify(postList.push(post)));
+      window.localStorage.setItem('postList',JSON.stringify(postList));
+
+      this.text = ''
     }
   }
 }
