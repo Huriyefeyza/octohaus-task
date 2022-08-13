@@ -51,6 +51,7 @@ body {
   margin: 0;
   padding: 0;
   font-weight: 400;
+  position: relative;
 }
 #app {
   -webkit-font-smoothing: antialiased;

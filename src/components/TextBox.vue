@@ -1,6 +1,6 @@
 <template>
   <div class="text-box">
-    <textarea placeholder="Your text here" v-model="text"></textarea>
+    <textarea placeholder="Your text here" maxlength="140" v-model="text"></textarea>
     <div class="bottom">
       <div class="left-content">
         <i data-feather="paperclip"></i>
@@ -62,7 +62,10 @@ textarea {
   color: #c1c8ce;
   font-size: 14px;
 }
-.submit {
+textarea:focus {
+  outline: none !important; 
+}
+.right-content button {
   box-shadow: 0px 3px 6px #8e44ad29;
   border-radius: 5px;
   background-color: #9b59b6;
