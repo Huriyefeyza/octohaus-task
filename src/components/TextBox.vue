@@ -1,6 +1,6 @@
 <template>
   <div class="text-box">
-    <textarea placeholder="Your text here" maxlength="140" v-model="text"></textarea>
+    <textarea placeholder="Your text here" maxlength="120" v-model="text"></textarea>
     <div class="bottom">
       <div class="left-content">
         <i data-feather="paperclip"></i>
@@ -53,17 +53,25 @@ export default {
   border-radius: 5px;
   background-color: #fff;
   padding: 30px;
+  margin-bottom: 19px;
 }
 textarea {
   resize: none;
   width: 100%;
   border: none;
   height: 72px;
-  color: #c1c8ce;
+  color: #34495E;
   font-size: 14px;
+  transition: all 0.2 ease-out;
 }
 textarea:focus {
-  outline: none !important; 
+  outline: none !important;
+}
+textarea::placeholder {
+  color: #C1C8CE;  
+}
+textarea:focus::placeholder {
+  color: transparent;
 }
 .right-content button {
   box-shadow: 0px 3px 6px #8e44ad29;
@@ -76,6 +84,7 @@ textarea:focus {
   letter-spacing: 1.4px;
   font-size: 14px;
   font-weight: 500;
+  transition: all 0.2 ease-out;
 }
 .submit:hover {
   box-shadow: 0px 3px 6px #8e44ad8f;

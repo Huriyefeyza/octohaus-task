@@ -2,7 +2,7 @@
   <div id="app">
     <div class="feed">
       <text-box :postList="postList"></text-box>
-      <div v-if="postList.length > 0">
+      <div v-if="postList.length > 0" class="post-container">
         <content-box
           v-for="(post,index) in postList"
           :date="post.date"
@@ -63,6 +63,11 @@ body {
 .feed {
   width: 420px;
   margin: auto;
+}
+.post-container {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 10px;
 }
 @media (max-width:450px) {
   .feed {

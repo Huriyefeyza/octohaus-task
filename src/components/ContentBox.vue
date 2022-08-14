@@ -10,6 +10,7 @@
           <span class="name">Jane Doe </span> {{ text }}
         </div>
         <div class="text" v-else>
+          <icon-initiliazer></icon-initiliazer>
           <span class="name">Jane Doe </span>
           <div class="edit-box">
             <textarea maxlength="50" v-model="editText"></textarea>
@@ -55,10 +56,14 @@
 </template>
 <script>
 import feather from "feather-icons";
+import IconInitiliazer from "../components/IconInitiliazer.vue"
 export default {
   props: ["date", "time", "text", "postList"],
   mounted() {
     feather.replace();
+  },
+  components : {
+    IconInitiliazer
   },
   data() {
     return {
@@ -117,17 +122,17 @@ export default {
 <style>
 .content-box {
   box-shadow: 0px 3px 6px #00000029;
-  border-radius: 5px;
   background-color: #fff;
   width: 100%;
-  margin: 19px 0;
   height: 126px;
   position: relative;
+  border-radius: 5px;
 }
 .content-box .top-content {
   border-bottom: 1px solid #eaecee;
   padding: 20px 20px 19px;
   display: flex;
+  border-radius: 5px 5px 0 0;
   gap: 10px;
   background-color: #fff;
   z-index: 1;
@@ -187,6 +192,7 @@ export default {
   gap: 5px;
   margin-right: 20px;
   cursor: pointer;
+    transition: all 0.2 ease-out;
 }
 .left-content span {
   color: #c1c8ce;
